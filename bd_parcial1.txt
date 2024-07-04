@@ -1,0 +1,27 @@
+/*Se crea la base de datos */
+drop schema if exists prueba_01;
+drop user if exists usuario_1;
+CREATE SCHEMA prueba_01 ;
+
+/*Se crea el usuario_1 y se le pone contraseña cliente_1*/
+create user 'usuario_1' identified by 'cliente_1';
+
+/*Se asignan todos los privilegios al usuario_1 y se refrescan los privilegios*/
+grant all privileges on prueba_01.* to 'usuario_1';
+flush privileges;
+
+/*Se crea la tabla bike y se agregan 3 registros*/
+create table prueba_01.bike (
+  id_bike INT NOT NULL AUTO_INCREMENT,
+  marca varchar(15),
+  velocidades INT,
+  cilindrada_bike INT,
+  imagen varchar(1024),
+  PRIMARY KEY (id_bike))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+/*Se insertan 3 registros*/
+INSERT INTO prueba_01.bike (marca, velocidades, cilindrada_bike, imagen) VALUES ('Yamaha', 5, 125, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS30efN4HeNOJ8gMcKb34_LNc_PCzuOt8xLkA&s');
+INSERT INTO prueba_01.bike (marca, velocidades, cilindrada_bike, imagen) VALUES ('Honda', 6, 500, 'https://www.moto1pro.com/sites/default/files/honda_cb500x-2021-2.jpg');
+INSERT INTO prueba_01.bike (marca, velocidades, cilindrada_bike, imagen) VALUES ('KTM', 5, 390, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbn9Iz-jcgCy_f92HEjfm3m2g4BizCj5wHRQ&s');
